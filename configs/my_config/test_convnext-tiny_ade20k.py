@@ -57,6 +57,7 @@ val_dataloader = dict(batch_size=1,sampler=None)
 test_dataloader = val_dataloader
 
 train_cfg = dict(
+    _delete_ = True,
     type='EpochBasedTrainLoop', 
     max_epochs=10, 
     val_interval=2)
@@ -71,7 +72,6 @@ default_hooks = dict(
     sampler_seed=dict(type='DistSamplerSeedHook'),
     visualization=dict(type='SegVisualizationHook'))
 
-runner = dict(type='EpochBasedRunner',
-							max_epoch='10')
-checkpoint_config = dict(by_epoch=True,interval=20) 
+
+log_processor = dict(by_epoch=True)
 
