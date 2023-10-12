@@ -52,26 +52,6 @@ param_scheduler = [
 ]
 
 # By default, models are trained on 8 GPUs with 2 images per GPU
-train_dataloader = dict(batch_size=2,sampler=None)
-val_dataloader = dict(batch_size=1,sampler=None)
+train_dataloader = dict(batch_size=2)
+val_dataloader = dict(batch_size=1)
 test_dataloader = val_dataloader
-
-train_cfg = dict(
-    type='EpochBasedTrainLoop', 
-    max_epochs=10, 
-    val_interval=2)
-val_cfg = dict(type='ValLoop')
-test_cfg = dict(type='TestLoop')
-
-default_hooks = dict(
-    # timer=dict(type='EpochTimerHook'),
-    logger=dict(type='LoggerHook', interval=10, log_metric_by_epoch=True),
-    # param_scheduler=dict(type='ParamSchedulerHook',convert_to_iter_based=False),
-    checkpoint=dict(type='CheckpointHook', by_epoch=True, interval=1),
-    sampler_seed=dict(type='DistSamplerSeedHook'),
-    visualization=dict(type='SegVisualizationHook'))
-
-runner = dict(type='EpochBasedRunner',
-							max_epoch='10')
-checkpoint_config = dict(by_epoch=True,interval=20) 
-
